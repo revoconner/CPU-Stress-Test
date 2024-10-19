@@ -11,7 +11,7 @@ def stresser():
 if __name__ == '__main__':
     try:
         time_stress = int(input("Enter the time in seconds for which you want to stress the CPU: "))
-        cores_stress = min(int(input("Enter the number of cores you want to stress: ")), multiprocessing.cpu_count())
+        cores_stress = min(int(input("Enter the number of cores (logical cores if multithreaded) you want to stress: ")), multiprocessing.cpu_count())
     except:
         print("Error: Invalid input")
         exit()
@@ -27,6 +27,8 @@ if __name__ == '__main__':
         sys.stdout.write('Time elapsed in seconds - %s\r' % str(j+1))
         sys.stdout.flush()
 
-    print("Terminating test.")
+    print("\nTerminating test.")
     for j in range(len(jobs)):
         jobs[j].terminate()
+
+    input("\nPress Enter to exit...")  # This keeps the Command Prompt open
